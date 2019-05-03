@@ -1,15 +1,15 @@
 
 import React from 'react'
-import {Footer} from './Footer'
-import {Header} from './Header'
+import {LogPanel} from './Footer'
+import {StatusBar} from './Header'
 
 export const Layout = ({isPlay = false, children}) => (
 	<div id='wrap'>
 		<head>
 			<title>DungeonsNGurumi</title>
 		</head>
-		{isPlay && <Header />}
+		{isPlay && <StatusBar />}
 		{children}
-		<Footer/>
+		<LogPanel/>
 	</div>
 )
