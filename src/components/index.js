@@ -1,4 +1,4 @@
-export {Layout, Header, Footer} from './common'
+export {Layout, StatusBar, Footer} from './common'
 export {CreatedBy, Home, PlayGround, BackToHome} from './menu'
 export {Player} from './player'
 export {Ball} from './elements'
