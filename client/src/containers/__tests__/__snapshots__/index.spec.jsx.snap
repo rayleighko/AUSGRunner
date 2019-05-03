@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Containers CreatedBy Container should render 1`] = `ShallowWrapper {}`;
+
+exports[`Containers Home Container should render 1`] = `ShallowWrapper {}`;
+
+exports[`Containers PlayGround Container should render 1`] = `ShallowWrapper {}`;
