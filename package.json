@@ -1,5 +1,5 @@
 {
-  "name": "running_ausg",
+  "name": "ausg_runner",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
