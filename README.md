@@ -3,20 +3,29 @@
 ## How to play Demo?
 
 ```
-npm i -g yarn
+- Install CLI tools
+$ npm i -g yarn
+$ npm install -g @aws-amplify/cli
+$ yarn upgrade
 
-yarn upgrade
+- Clone this repository
+$ git clone https://github.com/rayleighko/AUSGRunner.git
+$ cd AUSGRunner
 
-yarn
+- Amplify setting
+$ amplify configure (Add your AWS Information)
+$ amplify init
 
-yarn start
+- Start Apllication
+$ yarn
+$ yarn start
 
-Join this apllication
+# Join this Application
+# Join this apllication
+# Login
 
-Login
-
-Run!
+# Run to the Goal!
 ```
 
-Used(Now): React(JavaScript), CRA(Create-React-App), AWS_Amplify(Cognito, ...), VS_Code
-Used(Not yet): AWS_Amplify(App Sync(graphql), Lambda(Ranking System), ...), TypeScript
+Used(Now): React(JavaScript), CRA(Create-React-App), AWS_Amplify(Cognito(auth), S3(Hosting with http), ...), VS_Code
+Used(Not yet): AWS_Amplify(App Sync(graphql), Lambda(Ranking System), ...), TypeScript, Linter(ESLint with TypeScript)

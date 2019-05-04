@@ -9,14 +9,15 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
-    "semantic-ui-react": "^0.86.0"
+    "semantic-ui-react": "^0.86.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": "react-app"

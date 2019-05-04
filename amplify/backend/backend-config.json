@@ -1,7 +1,13 @@
 {
 	"auth": {
-		"cognito8f474845": {
+		"cognito6beb10f8": {
 			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
 			"providerPlugin": "awscloudformation"
 		}
 	}

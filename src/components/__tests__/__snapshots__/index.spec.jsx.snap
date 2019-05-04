@@ -1,25 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Common Components Footer test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Common Components Header test suite should render 1`] = `ShallowWrapper {}`;
-
 exports[`Common Components Layout test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Creature Components Player test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Elements Components Ball test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Map Components BottomTile test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Map Components Map test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Map Components WallTile test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Menu Components BackToHome test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Menu Components CreatedBy test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Menu Components Home test suite should render 1`] = `ShallowWrapper {}`;
-
-exports[`Menu Components PlayGround test suite should render 1`] = `ShallowWrapper {}`;

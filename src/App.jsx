@@ -13,22 +13,22 @@ Amplify.configure(aws_exports)
 
 function makeComparator(key, order='asc') {
   return (a, b) => {
-    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) return 0;
+    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) return 0
 
-    const aVal = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
-    const bVal = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
+    const aVal = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key]
+    const bVal = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key]
 
-    let comparison = 0;
-    if (aVal > bVal) comparison = 1;
-    if (aVal < bVal) comparison = -1;
+    let comparison = 0
+    if (aVal > bVal) comparison = 1
+    if (aVal < bVal) comparison = -1
 
     return order === 'desc' ? (comparison * -1) : comparison
-  };
+  }
 }
 
 // class NewMap extends Component {
 //   constructor(props) {
-//     super(props);
+//     super(props)
 //     this.state = {
 //       mapName: ''
 //       }
@@ -128,8 +128,8 @@ class PlayersListLoader extends React.Component {
         // When we get data about a new Player, we need to put in into an object
         // with the same shape as the original query results, but with the new data added as well
         let updatedQuery = Object.assign({}, prevQuery)
-        updatedQuery.listPlayers.items = prevQuery.listPlayers.items.concat([newData.onCreatePlayer]);
-        return updatedQuery;
+        updatedQuery.listPlayers.items = prevQuery.listPlayers.items.concat([newData.onCreatePlayer])
+        return updatedQuery
     }
 
     render() {
@@ -140,13 +140,13 @@ class PlayersListLoader extends React.Component {
                 onSubscriptionMsg={this.onNewPlayer}
             >
                 {({ data, loading }) => {
-                    if (loading) { return <div>Loading...</div>; }
-                    if (!data.listPlayers) return;
+                    if (loading) { return <div>Loading...</div> }
+                    if (!data.listPlayers) return
 
-                return <PlayersList player={data.listPlayers.items} />;
+                return <PlayersList player={data.listPlayers.items} />
                 }}
             </Connect>
-        );
+        )
     }
 }
 

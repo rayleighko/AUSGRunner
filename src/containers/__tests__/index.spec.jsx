@@ -1,23 +1,11 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import {CreatedByContainer, HomeContainer, PlayGroundContainer} from "../"
+import {TRexContainer} from "../"
 
 describe('Containers', () => {
-	describe('Home Container', () => {
+	describe('T-Rex Container', () => {
 		it('should render', () => {
-			const tree = shallow(<HomeContainer/>)
-			expect(tree).toMatchSnapshot()
-		})
-	})
-	describe('CreatedBy Container', () => {
-		it('should render', () => {
-			const tree = shallow(<CreatedByContainer/>)
-			expect(tree).toMatchSnapshot()
-		})
-	})
-	describe('PlayGround Container', () => {
-		it('should render', () => {
-			const tree = shallow(<PlayGroundContainer/>)
+			const tree = shallow(<TRexContainer/>)
 			expect(tree).toMatchSnapshot()
 		})
 	})
