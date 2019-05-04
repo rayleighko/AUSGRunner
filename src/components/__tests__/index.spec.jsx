@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 import {
-	Layout, Header, Footer, CreatedBy, Home, PlayGround, 
+	Layout, StatusBar, LogPanel, CreatedBy, Home, PlayGround, 
 	BackToHome, Player, Ball, Map, BottomTile, WallTile
 } from '../'
 
@@ -14,16 +14,16 @@ describe('Common Components', () => {
 		})
 	})
 
-	describe('Header test suite', () => {
+	describe('StatusBar test suite', () => {
 		it('should render', () => {
-			const tree = shallow(<Header/>)
+			const tree = shallow(<StatusBar/>)
 			expect(tree).toMatchSnapshot()
 		})
 	})
 
-	describe('Footer test suite', () => {
+	describe('LogPanel test suite', () => {
 		it('should render', () => {
-			const tree = shallow(<Footer/>)
+			const tree = shallow(<LogPanel/>)
 			expect(tree).toMatchSnapshot()
 		})
 	})
