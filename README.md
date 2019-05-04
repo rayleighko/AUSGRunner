@@ -25,6 +25,9 @@ $ yarn start
 # Login
 
 # Run to the Goal!
+
+- If delete your resouces
+$ amplify delete
 ```
 
 Used(Now): React(JavaScript), CRA(Create-React-App), AWS_Amplify(Cognito(auth), S3(Hosting with http), ...), VS_Code
