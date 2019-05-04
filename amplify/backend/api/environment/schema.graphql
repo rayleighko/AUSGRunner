@@ -1,0 +1,19 @@
+type Map @model @auth(rules: [{allow: owner}]) {
+    id: ID!
+    name: String!
+    levels: [Level] @connection(name: "Map")
+}
+
+type Level @model @auth(rules: [{allow: owner}]) {
+    id: ID!
+    map: Map @connection(name: "Map")
+    bucket: String!
+    fullsize: LevelS3Info!
+    thumbnail: LevelS3Info!
+}
+
+type LevelS3Info {
+    key: String!
+    width: Int!
+    height: Int!
+}

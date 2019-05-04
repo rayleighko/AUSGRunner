@@ -1,0 +1,19 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "environment-master-20190504000917-authRole",
+            "UnauthRoleArn": "arn:aws:iam::223694052240:role/environment-master-20190504000917-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::223694052240:role/environment-master-20190504000917-authRole",
+            "Region": "ap-northeast-1",
+            "DeploymentBucketName": "environment-master-20190504000917-deployment",
+            "UnauthRoleName": "environment-master-20190504000917-unauthRole",
+            "StackName": "environment-master-20190504000917",
+            "StackId": "arn:aws:cloudformation:ap-northeast-1:223694052240:stack/environment-master-20190504000917/dbe95c70-6e00-11e9-a7ea-06e089618fe0"
+        },
+        "categories": {
+            "auth": {
+                "cognito5517e6b2": {}
+            }
+        }
+    }
+}
