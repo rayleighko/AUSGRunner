@@ -26,7 +26,7 @@ $ yarn start
 
 # Run to the Goal!
 
-- If delete your resouces
+- If you want delete your resouces
 $ amplify delete
 ```
 
