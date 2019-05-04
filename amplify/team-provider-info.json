@@ -1,0 +1,19 @@
+{
+    "dmg": {
+        "awscloudformation": {
+            "AuthRoleName": "dungeonsngurumi-dmg-20190504211010-authRole",
+            "UnauthRoleArn": "arn:aws:iam::223694052240:role/dungeonsngurumi-dmg-20190504211010-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::223694052240:role/dungeonsngurumi-dmg-20190504211010-authRole",
+            "Region": "ap-northeast-2",
+            "DeploymentBucketName": "dungeonsngurumi-dmg-20190504211010-deployment",
+            "UnauthRoleName": "dungeonsngurumi-dmg-20190504211010-unauthRole",
+            "StackName": "dungeonsngurumi-dmg-20190504211010",
+            "StackId": "arn:aws:cloudformation:ap-northeast-2:223694052240:stack/dungeonsngurumi-dmg-20190504211010/9132d250-6e65-11e9-a328-0678051528e6"
+        },
+        "categories": {
+            "auth": {
+                "cognito8f474845": {}
+            }
+        }
+    }
+}

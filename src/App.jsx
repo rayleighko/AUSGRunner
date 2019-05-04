@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import {Divider, Form, Grid, Header, Input, List, Segment } from 'semantic-ui-react'
-import {v4 as uuid} from 'uuid'
-import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom'
+import {Grid, Header, List, Segment } from 'semantic-ui-react'
+import {TRexContainer} from './containers'
 
-import { Connect, withAuthenticator, S3Image } from 'aws-amplify-react'
-import Amplify, { API, graphqlOperation, Storage } from 'aws-amplify'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
+import { Connect, withAuthenticator } from 'aws-amplify-react'
+import Amplify, { graphqlOperation } from 'aws-amplify'
 
 // import {CreatedByContainer, HomeContainer, PlayGroundContainer} from './containers'
 import aws_exports from './aws-exports'
@@ -25,172 +26,87 @@ function makeComparator(key, order='asc') {
   };
 }
 
-const ListMaps = `query ListMaps {
-    listMaps(limit: 9999) {
+// class NewMap extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       mapName: ''
+//       }
+//     }
+
+//   handleChange = (event) => {
+//     let change = {}
+//     change[event.target.name] = event.target.value
+//     this.setState(change)
+//   }
+
+//   handleSubmit = async (event) => {
+//     event.preventDefault()
+//     const NewMap = `mutation NewMap($name: String!) {
+//       createMap(input: {name: $name}) {
+//         id
+//         name
+//       }
+//     }`
+
+//     const result = await API.graphql(graphqlOperation(NewMap, { name: this.state.mapName }))
+//     console.info(`Created map with id ${result.data.createMap.id}`)
+//     this.setState({ mapName: '' })
+//   }
+
+//   render() {
+//     return (
+//       <Segment>
+//         <Header as='h3'>Add a new map</Header>
+//           <Input
+//           type='text'
+//           placeholder='New Map Name'
+//           icon='plus'
+//           iconPosition='left'
+//           action={{ content: 'Create', onClick: this.handleSubmit }}
+//           name='mapName'
+//           value={this.state.mapName}
+//           onChange={this.handleChange}
+//           />
+//         </Segment>
+//       )
+//     }
+// }
+
+const ListPlayers = `query ListPlayers {
+    listPlayers(limit: 9999) {
         items {
             id
             name
+            bestScore
         }
     }
 }`
 
-const SubscribeToNewMaps = `
-  subscription OnCreateMap {
-    onCreateMap {
+const SubscribeToNewPlayers = `
+  subscription OnCreatePlayer {
+    onCreatePlayer {
       id
       name
+      bestScore
     }
   }
 `
 
-const GetMap = `query GetMap($id: ID!, $nextTokenForLevels: String) {
-  getMap(id: $id) {
-    id
-    name
-    levels(sortDirection: DESC, nextToken: $nextTokenForLevels) {
-      nextToken
-      items {
-        thumbnail {
-          width
-          height
-          key
-        }
-      }
-    }
-  }
-}`
+// const GetPlayer = `query GetPlayer($id: ID!, $nextTokenForLevels: String) {
+//   getPlayer(id: $id) {
+//     id
+//     name
+//     bestScore
+//   }
+// }`
 
-
-class S3ImageUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { uploading: false }
-  }
-  
-  uploadFile = async (file) => {
-    const fileName = uuid();
-
-    const result = await Storage.put(
-      fileName, 
-      file, 
-      {
-        customPrefix: { public: 'uploads/' },
-        metadata: { mapid: this.props.mapId }
-      }
-    );
-
-    console.log('Uploaded file: ', result);
-  }
-
-  onChange = async (e) => {
-    this.setState({uploading: true});
-    
-    let files = [];
-    for (var i=0; i<e.target.files.length; i++) {
-      files.push(e.target.files.item(i));
-    }
-    await Promise.all(files.map(f => this.uploadFile(f)));
-
-    this.setState({uploading: false});
-  }
-
-  render() {
-    return (
-      <div>
-        <Form.Button
-          onClick={() => document.getElementById('add-image-file-input').click()}
-          disabled={this.state.uploading}
-          icon='file image outline'
-          content={ this.state.uploading ? 'Uploading...' : 'Add Levels' }
-        />
-        <input
-          id='add-image-file-input'
-          type="file"
-          accept='image/*'
-          multiple
-          onChange={this.onChange}
-          style={{ display: 'none' }}
-        />
-      </div>
-    );
-  }
-}
-
-
-class LevelsList extends React.Component {
-  levelItems() {
-    return this.props.levels.map(level =>
-      <S3Image 
-        key={level.thumbnail.key} 
-        imgKey={level.thumbnail.key.replace('public/', '')} 
-        style={{display: 'inline-block', 'paddingRight': '5px'}}
-      />
-    )
-  }
-
-  render() {
-    return (
-      <div>
-        <Divider hidden />
-        {this.levelItems()}
-      </div>
-    )
-  }
-}
-
-class NewMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mapName: ''
-      }
-    }
-
-  handleChange = (event) => {
-    let change = {}
-    change[event.target.name] = event.target.value
-    this.setState(change)
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault()
-    const NewMap = `mutation NewMap($name: String!) {
-      createMap(input: {name: $name}) {
-        id
-        name
-      }
-    }`
-
-    const result = await API.graphql(graphqlOperation(NewMap, { name: this.state.mapName }))
-    console.info(`Created map with id ${result.data.createMap.id}`)
-    this.setState({ mapName: '' })
-  }
-
-  render() {
-    return (
-      <Segment>
-        <Header as='h3'>Add a new map</Header>
-          <Input
-          type='text'
-          placeholder='New Map Name'
-          icon='plus'
-          iconPosition='left'
-          action={{ content: 'Create', onClick: this.handleSubmit }}
-          name='mapName'
-          value={this.state.mapName}
-          onChange={this.handleChange}
-          />
-        </Segment>
-      )
-    }
-}
-
-
-class MapsList extends React.Component {
-  mapItems() {
-    return this.props.maps.sort(makeComparator('name')).map(map =>
-      <List.Item key={map.id}>
-        <NavLink to={`/maps/${map.id}`}>{map.name}</NavLink>
+class PlayersList extends React.Component {
+  playerItems() {
+    return this.props.players.sort(makeComparator('name')).map(player =>
+      <List.Item key={player.id}>
+      {player.name} 
+      {player.bestScore}
       </List.Item>
     )
   }
@@ -198,108 +114,36 @@ class MapsList extends React.Component {
   render() {
     return (
       <Segment>
-        <Header as='h3'>My Maps</Header>
+        <Header as='h3'>Players Ranking</Header>
         <List divided relaxed>
-          {this.mapItems()}
+          {this.playerItems()}
         </List>
       </Segment>
     )
   }
 }
 
-
-class MapDetailsLoader extends React.Component {
-	constructor(props) {
-        super(props);
-        this.state = {
-            nextTokenForLevels: null,
-            hasMoreLevels: true,
-            map: null,
-            loading: true
-        }
-    }
-
-    async loadMoreLevels() {
-        if (!this.state.hasMoreLevels) return;
-
-        this.setState({ loading: true });
-        const { data } = await API.graphql(graphqlOperation(GetMap, {id: this.props.id, nextTokenForLevels: this.state.nextTokenForLevels}));
-  
-        let map;
-        if (this.state.map === null) {
-            map = data.getMap;
-        } else {
-            map = this.state.map;
-            map.levels.items = map.levels.items.concat(data.getMap.levels.items);
-        }
-        this.setState({ 
-            map: map,
-            loading: false,
-            nextTokenForLevels: data.getMap.levels.nextToken,
-            hasMoreLevels: data.getMap.levels.nextToken !== null
-        });
-    }
-
-    componentDidMount() {
-        this.loadMoreLevels()
-    }
-
-    render() {
-        return (
-            <MapDetails 
-                loadingLevels={this.state.loading} 
-                map={this.state.map} 
-                loadMoreLevels={this.loadMoreLevels.bind(this)} 
-                hasMoreLevels={this.state.hasMoreLevels} 
-            />
-        );
-    }
-}
-
-
-class MapDetails extends Component {
-  render() {
-        if (!this.props.map) return 'Loading map...'
-        return (
-            <Segment>
-            <Header as='h3'>{this.props.map.name}</Header>
-            <S3ImageUpload mapId={this.props.map.id}/>        
-            <LevelsList levels={this.props.map.levels.items} />
-            {
-                this.props.hasMoreLevels && 
-                <Form.Button
-                onClick={this.props.loadMoreLevels}
-                icon='refresh'
-                disabled={this.props.loadingLevels}
-                content={this.props.loadingLevels ? 'Loading...' : 'Load more levels'}
-                />
-            }
-            </Segment>
-        )
-  }
-}
-
-class MapsListLoader extends React.Component {
-    onNewMap = (prevQuery, newData) => {
-        // When we get data about a new map, we need to put in into an object
+class PlayersListLoader extends React.Component {
+    onNewPlayer = (prevQuery, newData) => {
+        // When we get data about a new Player, we need to put in into an object
         // with the same shape as the original query results, but with the new data added as well
         let updatedQuery = Object.assign({}, prevQuery)
-        updatedQuery.listMaps.items = prevQuery.listMaps.items.concat([newData.onCreateMap]);
+        updatedQuery.listPlayers.items = prevQuery.listPlayers.items.concat([newData.onCreatePlayer]);
         return updatedQuery;
     }
 
     render() {
         return (
             <Connect
-                query={graphqlOperation(ListMaps)}
-                subscription={graphqlOperation(SubscribeToNewMaps)}
-                onSubscriptionMsg={this.onNewMap}
+                query={graphqlOperation(ListPlayers)}
+                subscription={graphqlOperation(SubscribeToNewPlayers)}
+                onSubscriptionMsg={this.onNewPlayer}
             >
                 {({ data, loading }) => {
                     if (loading) { return <div>Loading...</div>; }
-                    if (!data.listMaps) return;
+                    if (!data.listPlayers) return;
 
-                return <MapsList maps={data.listMaps.items} />;
+                return <PlayersList player={data.listPlayers.items} />;
                 }}
             </Connect>
         );
@@ -312,17 +156,8 @@ class App extends Component {
 		<Router>
         <Grid padded>
           <Grid.Column>
-            <Route path="/" exact component={NewMap}/>
-            <Route path="/" exact component={MapsListLoader}/>
-
-            <Route
-              path="/maps/:mapId"
-              render={ () => <div><NavLink to='/'>Back to Map list</NavLink></div> }
-            />
-            <Route
-              path="/maps/:mapId"
-              render={ props => <MapDetailsLoader id={props.match.params.mapId}/> }
-            />
+            <Route path="/" exact component={TRexContainer}/>
+            <Route path="/" exact component={PlayersListLoader}/>
           </Grid.Column>
         </Grid>
 		</Router>
