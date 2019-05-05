@@ -54,9 +54,9 @@ const makeComparator = (key, order='asc') => (
     }
 )
 
-export const PlayersList = () => {
+export const PlayersList = ({players = []}) => {
     const playerItems = () => {
-      return this.props.players.sort(makeComparator('name')).map(player =>
+      return players.sort(makeComparator('name')).map(player =>
       <List.Item key={player.id}>{player.name} / {player.bestScore}</List.Item>
     )}
   
