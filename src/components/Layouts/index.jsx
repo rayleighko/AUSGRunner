@@ -5,10 +5,8 @@ const Wrap = styled.div`
     text-align: center;
 `
 
-export const Layout = ({children}) => {
-    return (
-        <Wrap>
-            {children}
-        </Wrap>
-    )
-}
+export const Layout = ({children}) => (
+    <Wrap>
+        {children}
+    </Wrap>
+)

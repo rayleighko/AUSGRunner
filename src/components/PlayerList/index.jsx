@@ -72,8 +72,6 @@ export const PlayersList = ({players = []}) => {
   
 export const PlayersListLoader = () => {
     const onNewPlayer = (prevQuery, newData) => {
-        // When we get data about a new Player, we need to put in into an object
-        // with the same shape as the original query results, but with the new data added as well
         let updatedQueryItem = Object.assign({}, prevQuery).listPlayers.item
         updatedQueryItem = prevQuery.listPlayers.items.concat([newData.onCreatePlayer])
         

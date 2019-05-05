@@ -9,10 +9,8 @@ const Wrap = styled.div`
     border: solid 0.1rem #9921ff
 `
 
-export const RankingContainer = () => {
-    return (
-        <Wrap>
-            <PlayersListLoader />
-        </Wrap>
-    )
-}
+export const RankingContainer = () => (
+    <Wrap>
+        <PlayersListLoader />
+    </Wrap>
+)
