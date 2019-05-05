@@ -25,7 +25,11 @@ $ yarn start
 # Login
 
 # Run to the Goal!
+
+- If you want delete your resouces
+$ amplify delete
 ```
 
 Used(Now): React(JavaScript), CRA(Create-React-App), AWS_Amplify(Cognito(auth), S3(Hosting with http), ...), VS_Code
+
 Used(Not yet): AWS_Amplify(App Sync(graphql), Lambda(Ranking System), ...), TypeScript, Linter(ESLint with TypeScript)
