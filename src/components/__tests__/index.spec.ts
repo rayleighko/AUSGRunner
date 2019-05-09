@@ -1,6 +1,6 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import {Layout, Runner, PlayersList, PlayersListLoader} from '../'
+import {Layout, Runner, PlayersList, PlayersListLoader} from '..'
 
 describe('Components', () => {
 	describe('Layout Components', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import {TRexContainer, RankingContainer} from "../"
+import {TRexContainer, RankingContainer} from ".."
 
 describe('Containers', () => {
 	describe('T-Rex Container', () => {
