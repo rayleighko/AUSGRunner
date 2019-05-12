@@ -4,21 +4,21 @@
 
 ```
 - Install CLI tools
-$ npm i -g yarn
-$ npm install -g @aws-amplify/cli
-$ yarn upgrade
+
+// [번들 설치 관리자를 사용하여 AWS CLI 설치](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/install-bundle.html)를 참고해 AWS CLI 설치
+$ npm i -g @aws-amplify/cli
 
 - Clone this repository
 $ git clone https://github.com/rayleighko/AUSGRunner.git
 $ cd AUSGRunner
 
 - Amplify setting
-$ amplify configure (Add your AWS Information)
+$ aws configure (Add your AWS Information)
 $ amplify init
 
 - Start Apllication
-$ yarn
-$ yarn start
+$ npm i
+$ npm run start
 
 # Join this Application
 # Join this apllication
