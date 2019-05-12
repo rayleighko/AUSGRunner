@@ -4,7 +4,7 @@ import {Grid} from 'semantic-ui-react'
 import { withAuthenticator } from 'aws-amplify-react'
 import Amplify from 'aws-amplify'
 
-import {TRexContainer, RankingContainer} from './containers'
+import {TRexContainer} from './containers'
 import aws_exports from './aws-exports'
 Amplify.configure(aws_exports)
 
@@ -13,7 +13,6 @@ const App = () => (
     <Grid padded>
       <Grid.Column>
         <Route path="/" exact component={TRexContainer}/>
-        <Route path="/" exact component={RankingContainer}/>
       </Grid.Column>
     </Grid>
   </Router>
