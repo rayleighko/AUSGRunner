@@ -2,10 +2,10 @@
 
 ## How to play Demo?
 
-```
-- Install CLI tools
+사전 과제: [번들 설치 관리자를 사용하여 AWS CLI 설치](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/install-bundle.html)를 참고해 AWS CLI 설치
 
-// [번들 설치 관리자를 사용하여 AWS CLI 설치](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/install-bundle.html)를 참고해 AWS CLI 설치
+```
+- Install CLI tools for aws aplify
 $ npm i -g @aws-amplify/cli
 
 - Clone this repository
